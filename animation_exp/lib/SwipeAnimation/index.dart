@@ -2,10 +2,13 @@ import 'dart:async';
 import 'package:animation_exp/SwipeAnimation/data.dart';
 import 'package:animation_exp/SwipeAnimation/dummyCard.dart';
 import 'package:animation_exp/SwipeAnimation/activeCard.dart';
+import 'package:animation_exp/SwipeAnimation/styles.dart';
 
 //import 'package:animation_exp/PageReveal/page_main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
+
+import 'data.dart';
 
 class CardDemo extends StatefulWidget {
   @override
@@ -118,6 +121,13 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
     _swipeAnimation();
   }
 
+  reset() {
+    imageData = [image5, image3, image4, image2, image1];
+    data = imageData;
+    selectedData = [];
+    _buttonController.forward();
+  }
+
   @override
   Widget build(BuildContext context) {
     timeDilation = 0.4;
@@ -134,7 +144,7 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
           leading: new Container(
             margin: const EdgeInsets.all(15.0),
             child: new Icon(
-              Icons.equalizer,
+              Icons.message,
               color: Colors.cyan,
               size: 30.0,
             ),
@@ -142,6 +152,7 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
           actions: <Widget>[
             new GestureDetector(
               onTap: () {
+                reset();
                 // Navigator.push(
                 //     context,
                 //     new MaterialPageRoute(
@@ -150,7 +161,7 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
               child: new Container(
                   margin: const EdgeInsets.all(15.0),
                   child: new Icon(
-                    Icons.search,
+                    Icons.refresh,
                     color: Colors.cyan,
                     size: 30.0,
                   )),
